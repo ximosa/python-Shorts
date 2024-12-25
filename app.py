@@ -61,7 +61,7 @@ def limpiar_transcripcion_gemini(texto):
 - **Optimización para Lectura de Voz:** Adapta el texto para que sea ideal para ser leído por un sintetizador de voz, evitando frases complejas o poco naturales.
 
 - **Límites de Caracteres:**
-  *   Cada frase individual debe tener un máximo de **30 caracteres**, incluyendo espacios.
+  *   Cada frase individual debe tener un máximo de **300 caracteres**, incluyendo espacios.
   *   El resultado final, debe tener un máximo de **1200 caracteres** incluyendo espacios.
 
 - **Formato:** Genera el texto sin negritas, asteriscos, encabezados o cualquier otro tipo de formato. Solo el texto plano.
