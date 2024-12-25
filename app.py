@@ -9,10 +9,11 @@ try:
     genai.configure(api_key=GOOGLE_API_KEY)
     MODEL = "gemini-pro"
 except KeyError:
-    st.error("La variable de entorno _GOOGLE_API_KEY no está configurada.")
-    st.stop() # Detener la app si no hay API Key
+    st.error("La variable de entorno GOOGLE_API_KEY no está configurada.")
+    st.stop()  # Detener la app si no hay API Key
 
-def dividir_texto(texto, max_tokens=2000):
+
+def dividir_texto(texto, max_tokens=1500):
     """Divide el texto en fragmentos más pequeños."""
     tokens = texto.split()
     fragmentos = []
@@ -31,55 +32,51 @@ def dividir_texto(texto, max_tokens=2000):
         fragmentos.append(" ".join(fragmento_actual))
     return fragmentos
 
+
 def limpiar_transcripcion_gemini(texto):
     """
-    Limpia una transcripción usando Gemini.
+    Limpia una transcripción usando Gemini para Shorts.
 
     Args:
-      texto (str): La transcripción sin formato.
+        texto (str): La transcripción sin formato.
 
     Returns:
-      str: La transcripción formateada.
+        str: La transcripción formateada y adaptada para un Short.
     """
     prompt = f"""
-       Actúa como un lector profundo y reflexivo. Escribe en primera persona, como si tú hubieras vivido la experiencia o reflexionado sobre los temas presentados.
-    Sigue estas pautas:
-    - Reescribe el siguiente texto utilizando tus propias palabras, y asegúrate de mantener una longitud similar al texto original.
-    No reduzcas la información, e intenta expandir cada punto si es posible.
-    No me generes un resumen, quiero un texto parafraseado y expandido con una longitud comparable al texto original.
-    - Dale un titulo preciso y llamativo.
-    - Evita mencionar nombres de personajes o del autor.
-    - Concentra el resumen en la experiencia general, las ideas principales, los temas y las emociones transmitidas por el texto.
-    - Utiliza un lenguaje evocador y personal, como si estuvieras compartiendo tus propias conclusiones tras una profunda reflexión.
-    - No uses nombres propios ni nombres de lugares específicos, refiérete a ellos como "un lugar", "una persona", "otro personaje", etc.
-    - Usa un lenguaje claro y directo
-    - Escribe como si estuvieras narrando una historia
-    - Evita los asteriscos en el texto, dame tan solo el texto sin encabezados ni texto en negrita
-    -Importante, el texto debe adaptarse para que el lector de voz de google lo lea lo mejor posible
+    Actúa como un guionista experto en videos cortos para YouTube (Shorts). Tu objetivo es adaptar el siguiente texto para un video de 60 segundos. Sigue estas pautas:
+
+    - **Prioriza la concisión:** Reduce el texto a sus ideas más esenciales. Un Short debe ser directo y rápido.
+    - **Adapta la estructura:** Divide el texto en frases cortas y directas, ideales para mostrar en pantalla con una lectura de voz. Cada frase debe ser comprensible por sí sola y durar unos segundos.
+    - **Usa un lenguaje claro y directo:** Evita las frases largas y complejas, y prioriza palabras sencillas y fáciles de entender.
+    - **Estructura tipo narración:** Escribe como si estuvieras narrando una historia o presentando una idea.
+    - **Evita nombres y lugares específicos:** Refiérete a ellos como "una persona", "un lugar", "otro personaje", etc., a menos que sean esenciales para la comprensión del texto.
+    - **Enfócate en el mensaje principal:** Asegúrate de que el mensaje central del texto original se transmita de manera efectiva en este formato conciso.
+     - **Adapta el texto:** El texto tiene que ser adaptable para ser leido por un sintetizador de voz.
+    - **Genera el texto sin negritas, asteriscos ni encabezados.
         {texto}
 
-        Texto corregido:
+        Texto adaptado:
     """
     try:
         model = genai.GenerativeModel(MODEL)
         response = model.generate_content(prompt)
         return response.text
-
     except Exception as e:
         st.error(f"Error al procesar con Gemini: {e}")
         return None
-
 
 def procesar_transcripcion(texto):
     """Procesa el texto dividiendo en fragmentos y usando Gemini."""
     fragmentos = dividir_texto(texto)
     texto_limpio_completo = ""
     for i, fragmento in enumerate(fragmentos):
-        st.write(f"Procesando fragmento {i+1}/{len(fragmentos)}")
+        st.write(f"Procesando fragmento {i + 1}/{len(fragmentos)}")
         texto_limpio = limpiar_transcripcion_gemini(fragmento)
         if texto_limpio:
-            texto_limpio_completo += texto_limpio + " " # Agregar espacio para evitar que las frases se unan
+            texto_limpio_completo += texto_limpio + " "  # Agregar espacio para evitar que las frases se unan
     return texto_limpio_completo.strip()
+
 
 def descargar_texto(texto_formateado):
     """
@@ -98,7 +95,8 @@ def descargar_texto(texto_formateado):
         mime="text/plain"
     )
 
-st.title("Limpiador de Transcripciones de YouTube (con Gemini)")
+
+st.title("Adaptador de Texto para Shorts con Gemini")
 
 transcripcion = st.text_area("Pega aquí tu transcripción sin formato:")
 
@@ -106,6 +104,6 @@ if transcripcion:
     with st.spinner("Procesando con Gemini..."):
         texto_limpio = procesar_transcripcion(transcripcion)
         if texto_limpio:
-            st.subheader("Transcripción Formateada:")
+            st.subheader("Texto Adaptado para Short:")
             st.write(texto_limpio)
             descargar_texto(texto_limpio)
