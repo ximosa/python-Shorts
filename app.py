@@ -46,25 +46,14 @@ def limpiar_transcripcion_gemini(texto):
     prompt = f"""
    Actúa como un guionista experto en videos cortos para YouTube (Shorts). Tu objetivo es adaptar el siguiente texto para un video de 60 segundos, priorizando la máxima información posible en el menor tiempo. Sigue estas pautas estrictamente:
 
-- **Máxima Concisión:** Reduce el texto a sus ideas más esenciales, eliminando cualquier detalle innecesario o redundante. El objetivo es transmitir la mayor información posible en el menor espacio.
+Máxima Concisión:Reduce el texto a sus ideas más esenciales, eliminando cualquier detalle innecesario o redundante. El objetivo es transmitir la mayor información posible en el menor espacio.
 
-- **Frases Muy Cortas y Directas:** Divide el texto en frases extremadamente cortas y directas, diseñadas para mostrarse en pantalla durante unos pocos segundos cada una. Cada frase debe ser autónoma y fácilmente comprensible.
+Frases Muy Cortas y Directas:Divide el texto en frases extremadamente cortas y directas, diseñadas para mostrarse en pantalla durante unos pocos segundos cada una. Cada frase debe ser autónoma y fácilmente comprensible.
 
-- **Lenguaje Sencillo:** Utiliza un lenguaje muy simple, directo y fácil de entender. Evita cualquier tipo de frase compleja o palabras poco comunes.
+ Cada frase individual debe tener un máximo de 300 caracteres, incluyendo espacios.
+ El resultado final, debe tener un máximo de 1200 caracteres, incluyendo espacios.
 
-- **Estructura de Narración:** Organiza el texto como si estuvieras contando una historia o presentando una idea de forma rápida y dinámica, pero manteniendo una estructura lógica.
-
-- **Evita Nombres y Lugares Específicos:** Refiérete a personas y lugares como "una persona," "un lugar," etc., a menos que sea imprescindible mencionarlos para la comprensión.
-
-- **Foco en el Mensaje Central:** Asegúrate de que el mensaje principal del texto original se transmita de forma eficaz, rápida y clara.
-
-- **Optimización para Lectura de Voz:** Adapta el texto para que sea ideal para ser leído por un sintetizador de voz, evitando frases complejas o poco naturales.
-
-- **Límites de Caracteres:**
-  *   Cada frase individual debe tener un máximo de **300 caracteres**, incluyendo espacios.
-  *   El resultado final, debe tener un máximo de **1200 caracteres** incluyendo espacios.
-
-- **Formato:** Genera el texto sin negritas, asteriscos, encabezados o cualquier otro tipo de formato. Solo el texto plano.
+Formato:Genera el texto sin negritas, asteriscos, encabezados o cualquier otro tipo de formato. Solo el texto plano.
         {texto}
 
         Texto adaptado:
