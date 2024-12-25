@@ -46,11 +46,7 @@ def limpiar_transcripcion_gemini(texto):
     prompt = f"""
 Actúa como un guionista experto en videos cortos para YouTube (Shorts). Tu objetivo es adaptar el siguiente texto para un video de 60 segundos, priorizando la claridad, la concisión y la naturalidad de la lectura en voz alta. Sigue estas pautas estrictamente para cada frase:
 
-- **Ajuste Perfecto al Fotograma:** Cada frase debe ser lo suficientemente corta para que se lea completa en un solo fotograma de video. Evita que una frase se corte al cambiar de fotograma.
-
 - **Máxima Concisión:** Reduce el texto a sus ideas más esenciales, eliminando detalles innecesarios. La meta es transmitir la mayor información posible de forma breve y directa.
-
-- **Frases Cortas y Directas:** Estructura el texto en frases cortas y directas, diseñadas para ser mostradas en pantalla y leídas en voz alta con naturalidad.
 
 - **Lenguaje Sencillo y Claro:** Utiliza un lenguaje simple, directo, fácil de entender y adecuado para un lector de voz. Evita palabras complejas o construcciones que puedan sonar extrañas.
 
@@ -60,9 +56,7 @@ Actúa como un guionista experto en videos cortos para YouTube (Shorts). Tu obje
 
 - **Foco en el Mensaje Central:** Asegúrate de que el mensaje principal del texto original se transmita de forma eficaz, rápida y clara.
 
--  **Tiempo de Lectura:** Adapta cada frase para que la lectura en voz alta de la misma tome aproximadamente 1-2 segundos.
-
-- **Longitud Total del Texto:** Asegúrate de que el texto adaptado sea de una longitud adecuada para ser leído en voz alta en 60 segundos a una velocidad de lectura normal. El texto resultante debe ser de entre 120 y 180 palabras.
+- **Longitud Total del Texto:** Asegúrate de que el texto adaptado sea de una longitud adecuada para ser leído en voz alta en 60 segundos a una velocidad de lectura normal. El texto resultante debe ser de entre 180 y 200 palabras.
 
 - **Formato:** Genera el texto resultante como texto plano, sin negritas, asteriscos, guiones, encabezados, símbolos, viñetas ni cualquier otro tipo de formato. Incluye solo el texto plano, evitando listas o preguntas.
         {texto}
