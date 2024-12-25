@@ -44,16 +44,27 @@ def limpiar_transcripcion_gemini(texto):
         str: La transcripción formateada y adaptada para un Short.
     """
     prompt = f"""
-   Actúa como un guionista experto en videos cortos para YouTube (Shorts). Tu objetivo es adaptar el siguiente texto para un video de 60 segundos, priorizando la máxima información posible en el menor tiempo. Sigue estas pautas estrictamente:
+Actúa como un guionista experto en videos cortos para YouTube (Shorts). Tu objetivo es adaptar el siguiente texto para un video de 60 segundos, priorizando la claridad, la concisión y la naturalidad de la lectura en voz alta. Sigue estas pautas estrictamente para cada frase:
 
-Máxima Concisión:Reduce el texto a sus ideas más esenciales, eliminando cualquier detalle innecesario o redundante. El objetivo es transmitir la mayor información posible en el menor espacio.
+- **Ajuste Perfecto al Fotograma:** Cada frase debe ser lo suficientemente corta para que se lea completa en un solo fotograma de video. Evita que una frase se corte al cambiar de fotograma.
 
-Frases Muy Cortas y Directas:Divide el texto en frases extremadamente cortas y directas, diseñadas para mostrarse en pantalla durante unos pocos segundos cada una. Cada frase debe ser autónoma y fácilmente comprensible.
+- **Máxima Concisión:** Reduce el texto a sus ideas más esenciales, eliminando detalles innecesarios. La meta es transmitir la mayor información posible de forma breve y directa.
 
- Cada frase individual debe tener un máximo de 300 caracteres, incluyendo espacios.
- El resultado final, debe tener un máximo de 1200 caracteres, incluyendo espacios.
+- **Frases Cortas y Directas:** Estructura el texto en frases cortas y directas, diseñadas para ser mostradas en pantalla y leídas en voz alta con naturalidad.
 
-Formato:Genera el texto sin negritas, asteriscos, encabezados o cualquier otro tipo de formato. Solo el texto plano.
+- **Lenguaje Sencillo y Claro:** Utiliza un lenguaje simple, directo, fácil de entender y adecuado para un lector de voz. Evita palabras complejas o construcciones que puedan sonar extrañas.
+
+- **Estructura de Narración Fluida:** Organiza el texto como si estuvieras contando una historia o presentando una idea, pero de forma breve y directa, y asegurando que el ritmo sea adecuado para una lectura de voz natural.
+
+- **Evita Nombres y Lugares Específicos:** Refiérete a personas y lugares como "una persona," "un lugar," etc., a menos que sea imprescindible mencionarlos para la comprensión del texto.
+
+- **Foco en el Mensaje Central:** Asegúrate de que el mensaje principal del texto original se transmita de forma eficaz, rápida y clara.
+
+-  **Tiempo de Lectura:** Adapta cada frase para que la lectura en voz alta de la misma tome aproximadamente 1-2 segundos.
+
+- **Longitud Total del Texto:** Asegúrate de que el texto adaptado sea de una longitud adecuada para ser leído en voz alta en 60 segundos a una velocidad de lectura normal. El texto resultante debe ser de entre 120 y 180 palabras.
+
+- **Formato:** Genera el texto resultante como texto plano, sin negritas, asteriscos, guiones, encabezados, símbolos, viñetas ni cualquier otro tipo de formato. Incluye solo el texto plano, evitando listas o preguntas.
         {texto}
 
         Texto adaptado:
